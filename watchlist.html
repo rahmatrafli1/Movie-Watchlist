@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Watchlist</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">My Watchlist</h1>
+        <nav>
+          <a href="index.html" class="nav-link">Search for movies</a>
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Empty watchlist state -->
+      <div class="empty-state" id="emptyWatchlist">
+        <p class="empty-hint">Your watchlist is looking a little empty...</p>
+        <a href="index.html" class="add-movies-btn">
+          <span>➕</span> Let's add some movies!
+        </a>
+      </div>
+
+      <!-- Watchlist items -->
+      <ul class="movie-list hidden" id="watchlistContainer"></ul>
+    </main>
+
+    <script src="watchlist.js"></script>
+  </body>
+</html>

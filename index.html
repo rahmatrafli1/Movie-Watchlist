@@ -1,9 +1,72 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <h1>index.html</h1>
-        <script src="index.js"></script>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find your film</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Find your film</h1>
+        <nav>
+          <a href="watchlist.html" class="nav-link">My Watchlist</a>
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="search-bar-wrapper">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for a movie"
+            autocomplete="off"
+          />
+          <button id="searchBtn" class="search-btn">Search</button>
+        </div>
+      </div>
+
+      <section id="resultsContainer">
+        <!-- Default state -->
+        <div class="empty-state" id="defaultState">
+          <div class="empty-icon">🎞️</div>
+          <p class="empty-text">Start exploring</p>
+        </div>
+
+        <!-- No results state -->
+        <div class="empty-state hidden" id="noResultsState">
+          <div class="empty-icon">🔍</div>
+          <p class="empty-text no-results-text">
+            Unable to find what you're looking for.<br />Please try another
+            search.
+          </p>
+        </div>
+
+        <!-- Loading state -->
+        <div class="empty-state hidden" id="loadingState">
+          <div class="spinner"></div>
+          <p class="empty-text">Searching...</p>
+        </div>
+
+        <!-- Results list -->
+        <ul class="movie-list hidden" id="movieList"></ul>
+      </section>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
 </html>
