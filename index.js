@@ -1,5 +1,3 @@
-const API_KEY = "bbd53fc"; // Ganti dengan API key dari https://www.omdbapi.com/apikey.aspx
-
 // ===== Theme Management =====
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = themeToggle.querySelector(".theme-icon");
@@ -215,9 +213,8 @@ async function searchMovies() {
   showState("loading");
 
   try {
-    // Search for multiple results
     const searchRes = await fetch(
-      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${encodeURIComponent(query)}&type=movie`,
+      `https://www.omdbapi.com/?apikey=${CONFIG.API_KEY}&s=${encodeURIComponent(query)}&type=movie`,
     );
     const searchData = await searchRes.json();
 
@@ -226,10 +223,9 @@ async function searchMovies() {
       return;
     }
 
-    // Fetch full details for each (up to 5)
     const detailPromises = searchData.Search.slice(0, 5).map((m) =>
       fetch(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&i=${m.imdbID}&plot=full`,
+        `https://www.omdbapi.com/?apikey=${CONFIG.API_KEY}&i=${m.imdbID}&plot=full`,
       ).then((r) => r.json()),
     );
 
