@@ -429,7 +429,7 @@ nav {
 }
 
 .watchlist-btn.added {
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .remove-btn {
