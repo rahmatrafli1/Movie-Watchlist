@@ -1,3 +1,5 @@
+import { CONFIG } from "./config.js";
+
 // ===== Theme Management =====
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = themeToggle.querySelector(".theme-icon");
