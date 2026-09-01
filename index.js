@@ -17,7 +17,12 @@ function applyTheme(theme) {
 
 function initTheme() {
   const saved = localStorage.getItem("theme");
-  applyTheme(saved || getSystemTheme());
+  if (saved) {
+    applyTheme(saved);
+  } else {
+    // Gunakan sistem default, tanpa menyimpan ke localStorage
+    applyTheme(getSystemTheme());
+  }
 }
 
 themeToggle.addEventListener("click", () => {
