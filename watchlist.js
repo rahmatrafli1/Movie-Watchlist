@@ -11,6 +11,13 @@ function getSystemTheme() {
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+
+  // Update icon add movies btn
+  const addMoviesIcon = document.getElementById("addMoviesIcon");
+  if (addMoviesIcon) {
+    addMoviesIcon.src =
+      theme === "dark" ? "icons/plus-dark.svg" : "icons/plus.svg";
+  }
 }
 
 function initTheme() {
@@ -28,6 +35,11 @@ themeToggle.addEventListener("click", () => {
   const next = current === "dark" ? "light" : "dark";
   localStorage.setItem("theme", next);
   applyTheme(next);
+
+  // Update semua icon minus yang sedang tampil setelah theme berubah
+  document.querySelectorAll(".remove-btn .btn-icon").forEach((img) => {
+    img.src = next === "dark" ? "icons/minus-dark.svg" : "icons/minus.svg";
+  });
 });
 
 window
@@ -35,6 +47,11 @@ window
   .addEventListener("change", (e) => {
     if (!localStorage.getItem("theme")) {
       applyTheme(e.matches ? "dark" : "light");
+
+      // Update icon saat sistem theme berubah
+      document.querySelectorAll(".remove-btn .btn-icon").forEach((img) => {
+        img.src = e.matches ? "icons/minus-dark.svg" : "icons/minus.svg";
+      });
     }
   });
 
@@ -56,6 +73,11 @@ function saveWatchlist(list) {
 function removeFromWatchlist(imdbID) {
   const list = getWatchlist().filter((m) => m.imdbID !== imdbID);
   saveWatchlist(list);
+}
+
+function getRemoveIcon() {
+  const theme = document.documentElement.getAttribute("data-theme");
+  return theme === "dark" ? "icons/minus-dark.svg" : "icons/minus.svg";
 }
 
 // ===== Render =====
@@ -105,7 +127,9 @@ function renderWatchlist() {
                 </div>
                 <div class="movie-meta meta-btn-row">
                     <span>${meta}</span>
-                    <button class="remove-btn" data-id="${movie.imdbID}">➖ Remove</button>
+                    <button class="remove-btn" data-id="${movie.imdbID}">
+                        <img src="${getRemoveIcon()}" class="btn-icon" alt="remove"> Remove
+                    </button>
                 </div>
                 ${
                   plot

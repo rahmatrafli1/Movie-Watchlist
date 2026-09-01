@@ -7,7 +7,7 @@
   --text-primary: #111111;
   --text-secondary: #666666;
   --text-muted: #dfdddd;
-  --accent: #111111;
+  --accent: #e4dfdf;
   --accent-hover: #333333;
   --remove-color: #555555;
   --shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
@@ -15,6 +15,7 @@
   --search-bg: #ffffff;
   --search-border: #cccccc;
   --spinner-color: #111111;
+  --icon-filter: invert(0);
 }
 
 [data-theme="dark"] {
@@ -33,6 +34,7 @@
   --search-bg: #2a2a2a;
   --search-border: #444444;
   --spinner-color: #f0f0f0;
+  --icon-filter: invert(1);
 }
 
 /* ===== Reset & Base ===== */
@@ -198,9 +200,10 @@ nav {
 }
 
 .search-btn {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--bg);
+  color: var(--text-primary);
   border: none;
+  border-left: 1.5px solid var(--search-border);
   padding: 11px 20px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -209,12 +212,18 @@ nav {
   flex-shrink: 0;
 }
 
-[data-theme="dark"] .search-btn {
-  color: var(--bg);
+.search-btn:hover {
+  background: var(--surface-alt);
 }
 
-.search-btn:hover {
-  background: var(--accent-hover);
+[data-theme="dark"] .search-btn {
+  background: var(--search-bg);
+  color: var(--text-primary);
+  border-left: 1.5px solid var(--search-border);
+}
+
+[data-theme="dark"] .search-btn:hover {
+  background: var(--surface-alt);
 }
 
 /* ===== Empty States ===== */
@@ -230,18 +239,21 @@ nav {
 
 .empty-icon {
   font-size: 3rem;
-  opacity: 0.2;
-  filter: grayscale(1);
+  opacity: 1;
+}
+
+.empty-icon img {
+  filter: var(--icon-filter);
+}
+
+.empty-text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 [data-theme="dark"] .empty-text {
   color: var(--text-muted);
-}
-
-.empty-text {
-  color: var(--text-primary);
-  font-size: 1rem;
-  font-weight: 400;
 }
 
 .no-results-text {
@@ -252,7 +264,7 @@ nav {
 }
 
 .empty-hint {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 1rem;
   margin-bottom: 4px;
 }

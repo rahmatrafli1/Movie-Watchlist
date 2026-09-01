@@ -30,6 +30,13 @@ themeToggle.addEventListener("click", () => {
   const next = current === "dark" ? "light" : "dark";
   localStorage.setItem("theme", next);
   applyTheme(next);
+
+  // Update semua icon plus yang sedang tampil setelah theme berubah
+  document
+    .querySelectorAll(".watchlist-btn:not(.added) .btn-icon")
+    .forEach((img) => {
+      img.src = next === "dark" ? "icons/plus-dark.svg" : "icons/plus.svg";
+    });
 });
 
 window
@@ -37,6 +44,13 @@ window
   .addEventListener("change", (e) => {
     if (!localStorage.getItem("theme")) {
       applyTheme(e.matches ? "dark" : "light");
+
+      // Update icon saat sistem theme berubah
+      document
+        .querySelectorAll(".watchlist-btn:not(.added) .btn-icon")
+        .forEach((img) => {
+          img.src = e.matches ? "icons/plus-dark.svg" : "icons/plus.svg";
+        });
     }
   });
 
@@ -106,6 +120,11 @@ function setupReadMore(plotEl) {
   });
 }
 
+function getPlusIcon() {
+  const theme = document.documentElement.getAttribute("data-theme");
+  return theme === "dark" ? "icons/plus-dark.svg" : "icons/plus.svg";
+}
+
 function renderMovies(movies) {
   movieList.innerHTML = "";
 
@@ -144,7 +163,11 @@ function renderMovies(movies) {
                 <div class="movie-meta meta-btn-row">
                     <span>${meta}</span>
                     <button class="watchlist-btn ${inList ? "added" : ""}" data-id="${movie.imdbID}">
-                        ${inList ? "✅ Added" : "➕ Watchlist"}
+                        ${
+                          inList
+                            ? `✅ Added`
+                            : `<img src="${getPlusIcon()}" class="btn-icon" alt="add"> Watchlist`
+                        }
                     </button>
                 </div>
                 ${
@@ -168,7 +191,9 @@ function renderMovies(movies) {
       const movieData = movies.find((m) => m.imdbID === btn.dataset.id);
       toggleWatchlist(movieData);
       const added = isInWatchlist(btn.dataset.id);
-      btn.textContent = added ? "✅ Added" : "➕ Watchlist";
+      btn.innerHTML = added
+        ? `✅ Added`
+        : `<img src="${getPlusIcon()}" class="btn-icon" alt="add"> Watchlist`;
       btn.classList.toggle("added", added);
     });
 
