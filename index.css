@@ -6,7 +6,7 @@
   --border: #e0e0e0;
   --text-primary: #111111;
   --text-secondary: #666666;
-  --text-muted: #aaaaaa;
+  --text-muted: #dfdddd;
   --accent: #111111;
   --accent-hover: #333333;
   --remove-color: #555555;
@@ -64,7 +64,7 @@ body {
 .hero {
   position: relative;
   height: 140px;
-  background-image: url("https://image.tmdb.org/t/p/original/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg");
+  background-image: url("img/andre-tan-THJJRUhNlEc-unsplash.jpg");
   background-size: cover;
   background-position: center top;
   overflow: hidden;
@@ -234,8 +234,12 @@ nav {
   filter: grayscale(1);
 }
 
-.empty-text {
+[data-theme="dark"] .empty-text {
   color: var(--text-muted);
+}
+
+.empty-text {
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 400;
 }
